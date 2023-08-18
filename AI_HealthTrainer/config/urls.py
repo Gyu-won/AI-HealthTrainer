@@ -17,11 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from AI_HealthTrainer import views
+from django.urls import path
+from AI_HealthTrainer import views as account_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    
     path("show",views.show),
     path('', views.index, name='index'),
     path('video_feed/', views.webcam, name='webcam'),
     # path("insert", views.insert, name='insert'),
+    path('exercise/', views.exercise_list, name='exercise'),
+    path('exercise/<int:pk>/', views.exercise_detail, name='exercise_detail'),
+    path('exercise/create/', views.exercise_create, name='exercise_create'),
+    path('exercise/<int:pk>/update/', views.exercise_update, name='exercise_update'),
+    path('exercise/<int:pk>/delete/', views.exercise_delete, name='exercise_delete'),
+    
+    # path('register/', account_views.Register, name='register'),
+    # path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    # path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
+    
 ]

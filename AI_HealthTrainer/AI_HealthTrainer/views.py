@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
-from AI_HealthTrainer.models import goal
+from AI_HealthTrainer.models import goal, Exercise
+from AI_HealthTrainer.forms import ExerciseForm, GoalForm
+from django.shortcuts import render, get_object_or_404, redirect
+import json
+from django.http import JsonResponse
+from .models import Exercise
 
 import cv2
 import numpy as np
@@ -106,12 +111,70 @@ def webcam(request):
 
 def index(request):
     return render(request, 'index.html')
+
 def show(request):
-    print("Execute")
-    students = goal.objects.raw("SELECT goal.id, goal.start, goal.end, goal.goal,user.name FROM goal,user where user.iduser=goal.user_iduser")
-    print(students)
-    return render(request,"show.html",{'student':students})
-def insertgoal(request):
-    Goal = goal(name=request.POST['name'],start=request.POST['start'],end=request.POST['end'],goal=request.POST['goal'],user_iduser=request.POST['iduser'])
-    Goal.save()
-    return
+    Goal = goal.objects.all()
+    goal_json = []
+    for goal in Goal:
+        goal_data = {
+            'id': goal.id,
+            # 'name': goal.name,
+        }
+    goal_json.append(goal_data)
+    return JsonResponse({'goals': goal_data})
+    # print("Execute")
+    # students = goal.objects.raw("SELECT goal.id, goal.start, goal.end, goal.goal,user.name FROM goal,user where user.iduser=goal.user_iduser")
+    # print(students)
+    # return render(request,"show.html",{'student':students})
+# def insertgoal(request):
+#     Goal = goal(name=request.POST['name'],start=request.POST['start'],end=request.POST['end'],goal=request.POST['goal'],user_iduser=request.POST['iduser'])
+#     Goal.save()
+#     return
+
+def exercise_list(request):
+    exercises = Exercise.objects.all()
+    return render(request, 'exercise/exercise.html', {'exercises': exercises})
+    # exercises_json = []
+    # for exercise in exercises:
+    #     exercise_data = {
+    #         'id': exercise.id,
+    #         'name': exercise.name,
+    #     }
+    #     exercises_json.append(exercise_data)
+    # return JsonResponse({'exercises': exercises_json})
+    
+
+def exercise_detail(request, pk):
+    exercise = get_object_or_404(Exercise, pk=pk)
+    # return render(request, 'exercise_detail.html', {'exercise': exercise})
+
+def exercise_create(request):
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST)
+        if form.is_valid():
+            form.save()
+        # return JsonResponse({"Berhasil"})
+            # return redirect('exercise_list')
+    else:
+        form = ExerciseForm()
+    
+    # return render(request, 'exercise_form.html', {'form': form})
+
+def exercise_update(request, pk):
+    exercise = get_object_or_404(Exercise, pk=pk)
+    if request.method == 'POST':
+        form = ExerciseForm(request.POST, instance=exercise)
+        if form.is_valid():
+            form.save()
+            return redirect('exercise_list')
+    else:
+        form = ExerciseForm(instance=exercise)
+    # return render(request, 'exercise_form.html', {'form': form})
+
+def exercise_delete(request, pk):
+    exercise = get_object_or_404(Exercise, pk=pk)
+    if request.method == 'POST':
+        exercise.delete()
+        return redirect('exercise_list')
+    # return render(request, 'exercise_confirm_delete.html', {'exercise': exercise})
+
