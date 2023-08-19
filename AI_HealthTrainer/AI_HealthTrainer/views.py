@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 import json
 from django.http import JsonResponse
 from .models import Exercise
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views import View
 
 import cv2
 import numpy as np
@@ -178,3 +180,17 @@ def exercise_delete(request, pk):
         return redirect('exercise_list')
     # return render(request, 'exercise_confirm_delete.html', {'exercise': exercise})
 
+
+class CustomLoginView(LoginView):
+	template_name = 'accounts/login.html'
+	redirect_authenticated_user = True
+ 
+class HomeView(View):
+    template_name = 'accounts/home.html'
+    
+    def get (self, request):
+        return render(request, self.template_name)
+    
+class CustomLogoutView(LogoutView):
+    template_name = 'accounts/login.html'
+    next_page = 'login'
