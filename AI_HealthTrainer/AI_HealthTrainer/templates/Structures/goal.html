@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Goal</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C600%2C800"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akira+Expanded%3A800"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat%3A600"/>
+  <link rel="stylesheet" href="../../../static/styles/goal.css"/>
+</head>
+<body>
+<div class="container">
+  <div class="left-pane">
+    <div class="left-background"></div>
+  </div>
+  <div class="right-pane">
+    <p class="title">
+      <span class="title-part1">SETTING YOUR</span>
+      <span class="title-part2">GOAL</span>
+    </p>
+    <div class="date-section">
+      <!-- <img class="date-border" src="./assets/rectangle-10.png"> -->
+      <form action="exercise.html" method="post"> <!--여기에 하면 되-->
+        
+        <div class="start">
+          <label for="start-date" class="start-label">Start Date</label>
+        <input type="date" id="start-date" name="start-date" class="start-text">
+      </div>
+      <div class="end">
+        <label for="end-date" class="end-label">End Date</label>
+        <input type="date" id="end-date" name="end-date" class="end-text">
+      </div>
+      <div class="goal">
+        <label for="hours" class="hours-label">Hours</label>
+        <input type="number" id="hours" name="hours" step="1" min="1"> 
+
+        <label for="minutes" class="minutes-label">Minutes</label>
+        <input type="number" id="minutes" name="minutes" step="1" min="0" max="59">
+      </div>
+        <input class="button" type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+<script src="../../../static/javascripts/indexforGoal.js"></script>
+</body>
+</html>

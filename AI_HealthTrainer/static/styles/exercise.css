@@ -1,0 +1,83 @@
+body{
+  background-color: black;
+}
+
+.box{
+  background-color: #55595c86; 
+  border-radius: 40px; 
+  width: 300px; 
+  height: 280px; 
+  text-align: center; 
+   margin: 0 auto;
+}
+span.text, span.orange{
+  color: #fff;
+  font-size: 60px;
+  font-style: normal;
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
+  text-transform: none;
+}
+
+span.orange{
+  color: #F04823;
+}
+
+p.text{
+color: #9f3e3e;
+font-family: 'Montserrat';
+font-style: italic;
+font-size: 40px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+}
+
+
+/* gambar */
+img.lunge{
+  width: 270px; 
+  height: 280px;
+}
+
+img.jumping{
+  width: 182px;
+}
+
+img.curl{
+  width: 188px;
+}
+/* efke zoom */
+.lunge:hover,.jumping:hover,.curl:hover, .box:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 1s;
+}
+
+/* efek selection */
+
+/* efek shadow */
+.box:hover{
+  box-shadow: 0 12px 16px 0 #f049232e, 0 17px 50px 0 #F04823;
+}
+
+.ikitomboloke{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  
+}
+
+.btn-custom { 
+  color: #ffffff; 
+  background-color:#F04823; 
+} 
+
+.btn-custom:hover{
+  background-color:#343333; 
+}

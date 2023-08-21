@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebCam Streaming with MediaPipe</title>
+</head>
+<body>
+    <h1>Exercise Tracker</h1>
+    <img id="video" src="" style="width:1000px; height:600px;" alt="Webcam Video">
+
+    <p id="feedback"></p>
+    
+    <script src="../javascripts/indexforCamera.js"></script>
+    <script>
+    
+        var scriptElement = document.currentScript;
+        var scriptSrc = scriptElement.src;
+        var scriptPath = scriptSrc.substring(0, scriptSrc.lastIndexOf("/"));
+    
+        var video = document.getElementById('video');
+        var prev_feedback = "";
+        video.src = "/video_feed";
+        
+        console.log(scriptPath);
+
+        function fetchData() {
+            fetch("/get_feedback/")
+                .then(response => response.json())
+                .then(data => {
+                    const userInfoElement = document.getElementById("feedback");
+                    var feedback_text = data.textData
+                    userInfoElement.innerHTML = `
+                        <strong>Feedback:</strong> ${feedback_text}<br>
+                    `;
+                    
+                    if (feedback_text != prev_feedback){
+                        prev_feedback = feedback_text;
+                        return textToSpeech(feedback_text);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+        }
+
+        let synth = speechSynthesis;
+        
+        function textToSpeech(text) {
+            console.log("call textToSpeech");
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en'
+            synth.speak(utterance);
+            
+        }
+
+        setInterval(fetchData, 300);
+    </script>
+</body>

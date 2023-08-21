@@ -17,27 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from AI_HealthTrainer import views
-from AI_HealthTrainer import views as account_views
 from django.contrib.auth import views as auth_views
-from AI_HealthTrainer.views import CustomLoginView, HomeView, CustomLogoutView
+from AI_HealthTrainer.views import CustomLoginView, HomeView, CustomLogoutView, RegisterView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    
-    path("show",views.show),
     path('', views.index, name='index'),
     path('video_feed/', views.webcam, name='webcam'),
-    # path("insert", views.insert, name='insert'),
-    path('exercise/', views.exercise_list, name='exercise'),
-    path('exercise/<int:pk>/', views.exercise_detail, name='exercise_detail'),
-    path('exercise/create/', views.exercise_create, name='exercise_create'),
-    path('exercise/<int:pk>/update/', views.exercise_update, name='exercise_update'),
-    path('exercise/<int:pk>/delete/', views.exercise_delete, name='exercise_delete'),
+    path('home/exercise/', views.exercise_list, name='exercise_list'),
+    path('home/exercise/<int:pk>/', views.exercise_detail, name='exercise_detail'),
+    path('home/exercise/create/', views.exercise_create, name='exercise_create'),
+    path('home/exercise/<int:pk>/update/', views.exercise_update, name='exercise_update'),
+    path('home/exercise/<int:pk>/delete/', views.exercise_delete, name='exercise_delete'),
+    path('home/goal/', views.goal_list, name='goal_list'),
+    path('home/goal/create/', views.goal_create, name='goal_create'),
+    path('home/goal/<int:pk>/', views.goal_detail, name='goal_detail'),
+    path('home/goal/<int:pk>/update/', views.goal_update, name='goal_update'),
+    path('home/goal/<int:pk>/delete/', views.goal_delete, name='goal_delete'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('home/', HomeView.as_view(), name='home'),
-    path('logout/', CustomLogoutView.as_view(), name='logout')
-    # path('register/', account_views.Register, name='register'),
-    # path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
-    # path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
-    
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('register/', RegisterView.as_view(), name='register')
 ]

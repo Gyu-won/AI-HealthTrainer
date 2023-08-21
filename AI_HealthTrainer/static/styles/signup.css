@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  body {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    background-color: black;
+  }
+  
+  .coba{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+  }
+  
+  .container {
+    padding: 0 5rem;
+    width: 100%;
+  }
+  
+  .container > h2 {
+    text-transform: uppercase;
+    font-size: 2.8rem;
+    font-style: italic;
+    font-weight: 900;
+    color: #ffff;
+  }
+  
+  .container > h2 > span {
+    color: #f04823;
+  }
+  
+  .container > hr {
+    border: none;
+    margin-top: 0.8rem;
+    border-top: 3px solid #ffff;
+    height: 10px;
+  }
+  
+  .box-input{
+      margin-top: 40px;
+      padding: 0 120px 0 20px;
+  }
+  
+  .container > .box-input >  .input-email {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container  >.box-input >  .input-password {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .container > .box-input >  .input-password > span {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #ffff;
+    cursor: pointer;
+  }
+
+  .container > .box-input >  .input-username {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container > .box-input > div > label {
+    font-size: 1.2rem;
+    color: #ffff;
+    font-weight: 600;
+  }
+  
+  .container > .box-input > div > input {
+    border: none;
+    border-bottom: 1px solid #ffff;
+    outline: none;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 1rem;
+    color: #ffff;
+  }
+  
+  .btnLogin{
+      margin-top: 50px;
+      width: 130px;
+      border: none;
+      padding: 10px 30px;
+      background-color: #f04823;
+      color: #ffff;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 900;
+  }
+  
+  .container > .box-input > p {
+      margin-top: 20px;
+      color: #9B9B9B;
+  }
+  
+  .container > .box-input > p > span > a {
+      color: #ffff;
+      font-weight: bold;
+      text-decoration: none;
+  }
+  
+  .container > .box-input > p > span > a:hover {
+      text-decoration: underline;
+  }
+  
+  .image-container{
+      position: relative;
+      height: 100%;
+      background: url(../assets/bg-signup.png);
+      background-position: center;
+      background-size: cover;
+      border-radius: 25px 0 0 25px;
+  }
+  
+  .image-container > img {
+      position: absolute;
+      width: 70px;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+  }

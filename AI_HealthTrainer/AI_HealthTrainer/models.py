@@ -5,11 +5,10 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 import pymysql
 # Create your models here.
-class goal(models.Model):
-    start = models.CharField(max_length=100)
-    stop = models.CharField(max_length=100)
-    goal = models.CharField(max_length=50)
-    # user = models.CharField(max_length=45)
+class Goal(models.Model):
+    start = models.DateField()
+    stop = models.DateField()
+    goal = models.CharField(max_length=50) 
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     
     class Meta:
@@ -17,7 +16,7 @@ class goal(models.Model):
     
 class Exercise(models.Model):
     name = models.CharField(max_length=30)
-    deskription = models.CharField(max_length=255)
+    description = models.TextField(default='null')
     
     def _str_(self):
         return self.name

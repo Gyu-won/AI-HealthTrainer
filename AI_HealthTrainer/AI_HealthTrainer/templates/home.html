@@ -36,19 +36,14 @@
                 class="float-right btn btn-outline-primary mt-1"
                 >Log out</a
               >
+              <a>
               <h4 class="card-title mt-2">{{ user.username }}</h4>
               <h4 class="card-title mt-2">{{ user.id }}</h4>
               <h4 class="card-title mt-2">{{ user.is_superuser }}</h4>
             </header>
             <article class="card-body">
-              <p>
-                Selamat datang di website kami. Silahkan kunjungi
-                <a href="https://santrikoding.com" target="_blank"
-                  >santrikoding.com</a
-                >
-                untuk mencari tutorial yang berkualitas dengan harga yang
-                bersahabat.
-              </p>
+              <h1>WebCam Streaming with MediaPipe</h1>
+              <img src="{% url 'webcam' %}" width="100%" />
             </article>
             <!-- card-body end .// -->
           </div>

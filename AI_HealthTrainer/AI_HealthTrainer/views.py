@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import StreamingHttpResponse
-from AI_HealthTrainer.models import goal, Exercise
-from AI_HealthTrainer.forms import ExerciseForm, GoalForm
+from AI_HealthTrainer.models import Goal, Exercise
+from AI_HealthTrainer.forms import ExerciseForm, GoalForm, SignUpForm
 from django.shortcuts import render, get_object_or_404, redirect
 import json
 from django.http import JsonResponse
-from .models import Exercise
+from .models import Exercise, Goal
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
+from django.contrib.auth import login, authenticate
+from django.conf import settings
 
 import cv2
 import numpy as np
@@ -114,53 +116,96 @@ def webcam(request):
 def index(request):
     return render(request, 'index.html')
 
-def show(request):
-    Goal = goal.objects.all()
-    goal_json = []
-    for goal in Goal:
-        goal_data = {
-            'id': goal.id,
-            # 'name': goal.name,
-        }
-    goal_json.append(goal_data)
-    return JsonResponse({'goals': goal_data})
-    # print("Execute")
-    # students = goal.objects.raw("SELECT goal.id, goal.start, goal.end, goal.goal,user.name FROM goal,user where user.iduser=goal.user_iduser")
-    # print(students)
-    # return render(request,"show.html",{'student':students})
-# def insertgoal(request):
-#     Goal = goal(name=request.POST['name'],start=request.POST['start'],end=request.POST['end'],goal=request.POST['goal'],user_iduser=request.POST['iduser'])
-#     Goal.save()
-#     return
+class CustomLoginView(LoginView):
+	template_name = 'accounts/login.html'
+	redirect_authenticated_user = True
+ 
+class HomeView(View):
+    template_name = 'home.html'
+    
+    def get (self, request):
+        return render(request, self.template_name)
+    
+class CustomLogoutView(LogoutView):
+    template_name = 'accounts/login.html'
+    next_page = 'login'
+    
+class RegisterView(View):
+    template_name = 'accounts/register.html'
+
+    def get(self, request):
+        form = SignUpForm()
+        return render(request, self.template_name, {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('../login')
+        
+        return render(request, self.template_name, {'form': form})
+    
+def goal_create(request):
+    if request.method == 'POST':
+        form = GoalForm(request.POST)
+        if form.is_valid():
+            goal = form.save(commit=False)
+            goal.user = request.user  # Menambahkan user yang sedang login ke tujuan
+            goal.save()
+            return redirect('goal_list')
+    else:
+        form = GoalForm()
+    return render(request, 'goal/goal_form.html', {'form': form})
+
+
+def goal_list(request):
+    goals = Goal.objects.filter(user=request.user)
+    return render(request, 'goal/goal_list.html', {'goals': goals})
+
+def goal_detail(request, pk):
+    goal = get_object_or_404(Goal, pk=pk, user=request.user)
+    return render(request, 'goal/goal_detail.html', {'goal': goal})
+
+def goal_update(request, pk):
+    goal = get_object_or_404(Goal, pk=pk)
+    if request.method == 'POST':
+        form = GoalForm(request.POST, instance=goal)
+        if form.is_valid():
+            form.save()
+            return redirect('goal_list')
+    else:
+        form = GoalForm(instance=goal)
+    return render(request, 'goal/goal_form.html', {'form': form})
+
+def goal_delete(request, pk):
+    goal = get_object_or_404(Goal, pk=pk)
+    if request.method == 'POST':
+        goal.delete()
+        return redirect('goal_list')
+    return render(request, 'goal/goal_confirm_delete.html', {'goal': goal})
+
 
 def exercise_list(request):
     exercises = Exercise.objects.all()
-    return render(request, 'exercise/exercise.html', {'exercises': exercises})
-    # exercises_json = []
-    # for exercise in exercises:
-    #     exercise_data = {
-    #         'id': exercise.id,
-    #         'name': exercise.name,
-    #     }
-    #     exercises_json.append(exercise_data)
-    # return JsonResponse({'exercises': exercises_json})
-    
+    return render(request, 'exercise/exercise_list.html', {'exercises': exercises})
 
 def exercise_detail(request, pk):
     exercise = get_object_or_404(Exercise, pk=pk)
-    # return render(request, 'exercise_detail.html', {'exercise': exercise})
+    return render(request, 'exercise/exercise_detail.html', {'exercise': exercise})
 
 def exercise_create(request):
     if request.method == 'POST':
         form = ExerciseForm(request.POST)
         if form.is_valid():
             form.save()
-        # return JsonResponse({"Berhasil"})
-            # return redirect('exercise_list')
+            return redirect('exercise_list')
     else:
         form = ExerciseForm()
-    
-    # return render(request, 'exercise_form.html', {'form': form})
+    return render(request, 'exercise/exercise_form.html', {'form': form})
 
 def exercise_update(request, pk):
     exercise = get_object_or_404(Exercise, pk=pk)
@@ -171,26 +216,11 @@ def exercise_update(request, pk):
             return redirect('exercise_list')
     else:
         form = ExerciseForm(instance=exercise)
-    # return render(request, 'exercise_form.html', {'form': form})
+    return render(request, 'exercise/exercise_form.html', {'form': form})
 
 def exercise_delete(request, pk):
     exercise = get_object_or_404(Exercise, pk=pk)
     if request.method == 'POST':
         exercise.delete()
         return redirect('exercise_list')
-    # return render(request, 'exercise_confirm_delete.html', {'exercise': exercise})
-
-
-class CustomLoginView(LoginView):
-	template_name = 'accounts/login.html'
-	redirect_authenticated_user = True
- 
-class HomeView(View):
-    template_name = 'accounts/home.html'
-    
-    def get (self, request):
-        return render(request, self.template_name)
-    
-class CustomLogoutView(LogoutView):
-    template_name = 'accounts/login.html'
-    next_page = 'login'
+    return render(request, 'exercise/exercise_confirm_delete.html', {'exercise': exercise})

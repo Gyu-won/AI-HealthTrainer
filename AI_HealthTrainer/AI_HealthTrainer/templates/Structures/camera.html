@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Camera</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat%3A800"/>
+  <link rel="stylesheet" href="{% static 'styles/camera.css' %}">
+</head>
+<body>
+<div class="camera-main">
+  <p class="header-title">CAMERA</p>  
+  <div class="camera-header">
+    <div class="header-bg"><img id="camera-viewer" src="" alt="Webcam Video" data-sets="{{ sets_value }}" data-reps="{{ reps_value }}" data-rest="{{ rest_value }}"></div>
+  </div>
+  <div class="camera-info">
+    <div class="info-bg1"></div>
+    <div class="info-bg2"></div>
+    <p class="time-text" id="mins">00</p>
+    <p class="time-text" id="min-unit">min</p>
+    <p class="time-text" id="seconds">00</p>
+    <p class="time-text" id="second-unit">sec</p>
+    <p class="set-text" id="set-num">0/0</p>
+    <p class="set-text" id="set-unit">sets</p>
+  </div>
+</div>
+<<<<<<< HEAD
+<p id="feedback" style="text-align: center"></p>
+=======
+<p id="feedback" style="text-align: center;"></p>
+>>>>>>> 7ceb90ab9000e37cb670af51491bcc3d3db9dcfa
+<script src="{% static 'javascripts/indexforCamera.js' %}"></script>
+</body>
+</html>
