@@ -64,20 +64,3 @@ img.curl{
 .box:hover{
   box-shadow: 0 12px 16px 0 #f049232e, 0 17px 50px 0 #F04823;
 }
-
-.ikitomboloke{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  
-}
-
-.btn-custom { 
-  color: #ffffff; 
-  background-color:#F04823; 
-} 
-
-.btn-custom:hover{
-  background-color:#343333; 
-}

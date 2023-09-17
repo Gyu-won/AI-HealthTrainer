@@ -114,10 +114,10 @@ def webcam(request):
     return StreamingHttpResponse(generate_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'Structures/homepage.html')
 
 class CustomLoginView(LoginView):
-	template_name = 'accounts/login.html'
+	template_name = 'Structures/login.html'
 	redirect_authenticated_user = True
  
 class HomeView(View):

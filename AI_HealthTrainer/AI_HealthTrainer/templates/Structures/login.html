@@ -32,29 +32,35 @@
           Account
         </h2>
         <hr />
-        <div class="box-input">
-          <div class="input-email">
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" />
+        <form method="POST" action="{% url 'login' %}">
+          <div class="box-input">
+            <div class="input-email">
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email" />
+            </div>
+            <div class="input-password">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" />
+              <span id="iconClick"
+                ><i id="icon" class="material-icons">visibility_off</i></span
+              >
+            </div>
+            <button class="btnLogin" type="submit">Login</button>
+            <p>
+              Don't Have an Account ?
+              <span><a href="{% url 'signup' %}">Sign Up</a></span>
+            </p>
           </div>
-          <div class="input-password">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-            <span id="iconClick"><i id="icon" class="material-icons">visibility_off</i></span>
-          </div>
-          <button class="btnLogin" type="submit">Login</button>
-          <p>Don't Have an Account ? <span><a href="signup.html">Sign Up</a></span> </p>
-          
-        </div>
+        </form>
       </div>
     </div>
     <div class="image-container">
-        <img src="../../../static/assets/logoteam.png" alt="logo">
-        <!-- <div class="img">
+      <img src="../../../static/assets/logoteam.png" alt="logo" />
+      <!-- <div class="img">
             <img src="../../../static/assets/logoteam.png" alt="logo">
         </div> -->
     </div>
-    
+
     <script src="./js/login.js"></script>
   </body>
 </html>

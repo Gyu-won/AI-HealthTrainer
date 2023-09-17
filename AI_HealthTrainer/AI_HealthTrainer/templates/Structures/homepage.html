@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Health Trainer</title>
+
+    <!-- style -->
+
+    <link rel="stylesheet" href="../../../static/styles/homepage.css" />
+
+    <!-- FONTS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="utama">
+        <a class="logo" href="#"><img src="../../../static/assets/logoteam.png" alt=""></a>
+      <div class="menu">
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="close-icon">
+          <div class="line line-1"></div>
+          <div class="line line-2"></div>
+        </div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#teams">Teams</a></li>
+          <li><a class="login" href="{% url 'login' %}">Login</a></li>
+        </ul>
+      </div>
+    </div>
+      </div>
+    </nav>
+    <section id="home">
+      <div class="container-home">
+        <div class="content-home">
+        <h1>AI <br> <span>HEALTH</span> <br> TRAINER</h1>
+        <p>The AI Health Trainer project is a technological innovation that aims to help individuals achieve and maintain a healthy lifestyle through a personalized and adaptive approach.</p>
+        <a class="login" href="#">Get Started <img src="../../../static/assets/send.png" alt=""></a>
+      </div>
+      </div>
+      <hr>
+    </section>
+    <section id="about">
+      <div class="container-about">
+        <div class="content-about">
+          <div>
+          <h1>ABOUT<span> US</span></h1>
+          <p>The "AI Health Trainer" project combines artificial intelligence (AI) with Python, the Django framework, and Mysql to help users run personalized wellness programs. With MediaPipe, the project is able to analyze the user's body movements, while Django is used for interactive user interfaces. User health data and goals are stored in Mysql. AI will analyze this data and design individualized exercise and calorie programs, resulting in a smart and effective approach to health.</p>
+        </div>
+        </div>
+        <div class="img-about">
+        <img src="../../../static/assets/about.png" alt="about">
+        <img src="../../../static/assets/ellipse.png" alt="ellipse">
+       </div>
+      </div>
+      <hr>
+    </section>
+
+    <!--TOOLS-->
+    <section id="tools">
+      <div class="container">
+        <div class="wrap-content">
+          <div class="content">
+            <h3>TOOLS</h3>
+            <p>
+              The "AI Health Trainer" project uses a number of technology tools
+              that integrate with each other to create a personalized and
+              intelligent health experience for users such as:
+            </p>
+          </div>
+          <div class="tools-item">
+            <div class="item">
+              <h5>1</h5>
+              <p>Python</p>
+              <img class="py" src="../../../static/assets/py.png" alt="python" />
+            </div>
+            <div class="item">
+              <h5>2</h5>
+              <p>HTML & CSS</p>
+              <img class="css" src="../../../static/assets/css.png" alt="CSS" />
+              <img class="html" src="../../../static/assets/html.png" alt="HTML" />
+            </div>
+            <div class="item">
+              <h5>3</h5>
+              <p>MySql</p>
+              <img class="mysql" src="../../../static/assets/sql.png" alt="sql" />
+            </div>
+            <div class="item">
+              <h5>4</h5>
+              <p>Django</p>
+              <img class="django" src="../../../static/assets/django.png" alt="django">
+          </div>
+          <div class="item">
+              <h5>5</h5>
+              <p>MediaPipe</p>
+              <img class="media-pype" src="../../../static/assets/mediapipe.png" alt="mediapipe"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </section>
+
+    <!-- TEAMS -->
+
+    <section id="teams">
+      <div class="wrap-content">
+        <div class="content teams">
+          <h3>OUR <span>TEAMS</span></h3>
+          <p>
+            Our team is a group of experts dedicated to developing the "AI
+            Health Trainer" project. We consist of specialists in various
+            fields, including frontend and backend.
+          </p>
+        </div>
+        <div class="grid-container">
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/nabilah.png" alt="Nabilah" />
+            </div>
+            <h3>
+              Woohyeon <br />
+              Hong
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/frontend.svg" alt="frontend "
+              /></span>
+              Frontend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/nabilah.png" alt="Nabilah" />
+            </div>
+            <h3>
+              Putri <br />
+              Nabilah H.
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/frontend.svg" alt="frontend "
+              /></span>
+              Frontend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/syahmi.png" alt="Syahmi" />
+            </div>
+            <h3>
+              Syahmi <br />
+              Naufal Saputra
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/frontend.svg" alt="frontend "
+              /></span>
+              Frontend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/nabilah.png" alt="Nabilah" />
+            </div>
+            <h3>
+              Gyuwon <br />
+              Jung
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/backend.svg" alt="backend"
+              /></span>
+              Backend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/nabilah.png" alt="Nabilah" />
+            </div>
+            <h3>
+              Jeongmin <br />
+              Lee
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/backend.svg" alt="backend"
+              /></span>
+              Backend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/edy.png" alt="Edy" />
+            </div>
+            <h3>
+              Edy <br />
+              Atthoillah
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/backend.svg" alt="backend" 
+              /></span>
+              Backend
+            </p>
+          </div>
+          <div class="profile">
+            <div class="wrap-profile">
+              <img src="../../../static/assets/nabilah.png" alt="Nabilah" />
+            </div>
+            <h3>
+              Ery Setiawan Jullev <br />
+              Atmadji S.Kom, M.Kom
+            </h3>
+            <p>
+              <span
+                ><img src="../../../static/assets/lecture.svg" alt="lecture "
+              /></span>
+              Lecture
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="wrap-university">
+          <div class="university">
+            <img src="../../../static/assets/knu.png" alt="knu">
+            <p>Kyungpook National Univerisity</p>
+          </div>
+          <div class="university">
+            <img src="../../../static/assets//Logo Polije (Biru Muda).png" alt="knu">
+            <p>Politeknik Negeri Jember</p>
+          </div>
+        </div>
+        <div class="logo-team">
+          <img src="../../../static/assets/logoteam.png" alt="team">
+        </div>
+      </div>
+    </footer>
+    <script src="../../../static/javascripts/homepage.js"></script>
+  </body>
+</html>
